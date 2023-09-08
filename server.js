@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const apiKey = process.env.API_KEY;
 const apiUrl = "https://api.openai.com/v1/engines/text-davinci-003/completions"; // Adjust the API endpoint as needed
-console.log(apiKey)
+
 // Setup server
 const app = express();
 app.use(bodyParser.json());
