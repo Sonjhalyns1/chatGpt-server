@@ -2,10 +2,11 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const axios = require("axios");
+require('dotenv').config();
 
-const apiKey = "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";
+const apiKey = process.env.API_KEY;
 const apiUrl = "https://api.openai.com/v1/engines/text-davinci-003/completions"; // Adjust the API endpoint as needed
-
+console.log(apiKey)
 // Setup server
 const app = express();
 app.use(bodyParser.json());
