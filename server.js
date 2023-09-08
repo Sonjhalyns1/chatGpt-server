@@ -3,7 +3,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const axios = require("axios");
 
-const apiKey = "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";
+const apiKey = "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";
 const apiUrl = "https://api.openai.com/v1/engines/text-davinci-003/completions"; // Adjust the API endpoint as needed
 
 // Setup server
