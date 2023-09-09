@@ -32,4 +32,3 @@ node_modules/
 *.log
 
 # Ignore .env file (containing sensitive information)
-.env
