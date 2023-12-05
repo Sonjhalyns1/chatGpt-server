@@ -5,7 +5,7 @@ const axios = require("axios");
 require('dotenv').config();
 
 const apiKey = process.env.API_KEY;
-const apiUrl = "https://api.openai.com/v1/engines/text-davinci-003/completions"; // Adjust the API endpoint as needed
+const apiUrl = "https://api.openai.com//v1/chat/completions"; // Adjust the API endpoint as needed
 
 // Setup server
 const app = express();
@@ -19,17 +19,10 @@ app.post("/chat", async (req, res) => {
   try {
     const response = await axios.post(
       apiUrl,
-      {
-        prompt: prompt,
-        max_tokens: 512,
-        temperature: 0,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`,
-        },
-      }
+      await openai.chat.completions.create({
+        messages: [{ role: "system", content: prompt }],
+        model: "gpt-3.5-turbo",
+      })
     );
 
     res.send(response.data.choices[0].text);
