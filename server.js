@@ -1,3 +1,21 @@
+// import {Configuration, OpenAIApi } from "openai";
+// require('dotenv').config();
+
+// const apiKey = process.env.API_KEY;
+// const organizationKey = process.env.ORGANIZATION_KEY
+// const configuration = new Configuration({
+//   organization :`${organizationKey}`,
+//   apiKey: `${apiKey}`,
+// })
+// const openai = new OpenAIApi(configuration);
+
+// const completion = await openai.createChatCompletion({
+//   model: "gpt-3.5-turbo",
+//   messages: [{role: "user", content: "hello world"}]
+// })
+
+// console.log(completion.data.choices[0].message)
+
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -19,10 +37,17 @@ app.post("/chat", async (req, res) => {
   try {
     const response = await axios.post(
       apiUrl,
-      await openai.chat.completions.create({
-        messages: [{ role: "system", content: prompt }],
-        model: "gpt-3.5-turbo",
-      })
+      {
+        prompt: prompt,
+        max_tokens: 512,
+        
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+        },
+      }
     );
 
     res.send(response.data.choices[0].text);
